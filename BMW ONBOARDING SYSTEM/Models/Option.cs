@@ -10,11 +10,13 @@ namespace BMW_ONBOARDING_SYSTEM.Models
         [Key]
         public int OptionId { get; set; }
         public int QuestionId { get; set; }
-        [InverseProperty("Option")]
-        public virtual Question Question { get; set; }
         public int OptionNumber { get; set; }
         [Required]
         [StringLength(100)]
         public string OptionDescription { get; set; }
+
+        [ForeignKey(nameof(QuestionId))]
+        [InverseProperty("Option")]
+        public virtual Question Question { get; set; }
     }
 }

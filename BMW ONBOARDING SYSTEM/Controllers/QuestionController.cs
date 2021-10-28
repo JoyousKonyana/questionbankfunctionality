@@ -31,12 +31,12 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         //[Authorize(Role.Admin)]
         [HttpPost]
         [Route("[action]/{userid}")]
-        public async Task<ActionResult<QuestionViewModel>> Createquestion(int userid,[FromBody] QuestionViewModel model)
+        public async Task<ActionResult<QuestionViewModel>> Createquestion(int userid, [FromBody] QuestionViewModel model)
         {
             try
             {
                 var question = _mapper.Map<Question>(model);
-              
+
                 _questionRepository.Add(question);
 
                 if (await _questionRepository.SaveChangesAsync())
@@ -57,7 +57,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
             return BadRequest();
         }
 
-        // get question for a specific quiz
+        // get question for a specific quiz now using question bank id
         //[Authorize(Role.Onboarder)]
         [HttpGet("{id}")]
         [Route("[action]/{id}")]
@@ -65,7 +65,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         {
             try
             {
-                Question[] result = await _questionRepository.GetQuestionByQuizIDAsync(id);
+                QuestionBank result = await _questionRepository.GetQuestionByQuestionBankIDAsync(id);
 
                 if (result == null) return NotFound();
 
@@ -117,7 +117,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         //[Authorize(Role.Admin)]
         [HttpPut("{id}")]
         [Route("[action]/{id}/{userid}")]
-        public async Task<ActionResult<QuestionViewModel>> UpdateQuestion(int id,int userid, [FromBody] QuestionViewModel updatedQuestionModel)
+        public async Task<ActionResult<QuestionViewModel>> UpdateQuestion(int id, int userid, [FromBody] QuestionViewModel updatedQuestionModel)
         {
             try
             {

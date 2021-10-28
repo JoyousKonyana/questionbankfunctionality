@@ -144,6 +144,8 @@ namespace BMW_ONBOARDING_SYSTEM.Models
 
             modelBuilder.Entity<Employee>(entity =>
             {
+                entity.HasIndex(e => e.TitleId);
+
                 entity.Property(e => e.EmailAddress).IsUnicode(false);
 
                 entity.Property(e => e.EmployeeJobTitle).IsUnicode(false);
@@ -163,6 +165,13 @@ namespace BMW_ONBOARDING_SYSTEM.Models
             modelBuilder.Entity<EmployeeCalendar>(entity =>
             {
                 entity.Property(e => e.EmployeeCalendarLink).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Equipment>(entity =>
+            {
+                entity.HasIndex(e => e.EquipmentBrandId);
+
+                entity.HasIndex(e => e.EquipmentTypeId);
             });
 
             modelBuilder.Entity<EquipmentBrand>(entity =>
@@ -200,6 +209,11 @@ namespace BMW_ONBOARDING_SYSTEM.Models
             modelBuilder.Entity<Lesson>(entity =>
             {
                 entity.Property(e => e.LessonDescription).IsUnicode(false);
+
+                entity.HasOne(d => d.Course)
+                    .WithMany(p => p.Lesson)
+                    .HasForeignKey(d => d.CourseId)
+                    .HasConstraintName("FK_Lesson_Course");
             });
 
             modelBuilder.Entity<LessonCompletionStatus>(entity =>
@@ -209,6 +223,10 @@ namespace BMW_ONBOARDING_SYSTEM.Models
 
             modelBuilder.Entity<LessonContent>(entity =>
             {
+                entity.HasIndex(e => e.ArchiveStatusId);
+
+                entity.HasIndex(e => e.LessonContentTypeId);
+
                 entity.Property(e => e.LessonContent1).IsUnicode(false);
 
                 entity.Property(e => e.LessonContentDescription).IsUnicode(false);
@@ -224,6 +242,11 @@ namespace BMW_ONBOARDING_SYSTEM.Models
                 entity.Property(e => e.LessonOutcomeDescription).IsUnicode(false);
 
                 entity.Property(e => e.LessonOutcomeName).IsUnicode(false);
+
+                entity.HasOne(d => d.Lesson)
+                    .WithMany(p => p.LessonOutcome)
+                    .HasForeignKey(d => d.LessonId)
+                    .HasConstraintName("FK_LessonOutcome_Lesson");
             });
 
             modelBuilder.Entity<Notification>(entity =>
@@ -237,7 +260,7 @@ namespace BMW_ONBOARDING_SYSTEM.Models
                     .WithMany(p => p.Onboarder)
                     .HasForeignKey(d => d.EmployeeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Onboarder__Emplo__5AEE82B9");
+                    .HasConstraintName("FK__Onboarder__Emplo__5224328E");
             });
 
             modelBuilder.Entity<OnboarderCourseEnrollment>(entity =>
@@ -249,13 +272,13 @@ namespace BMW_ONBOARDING_SYSTEM.Models
                     .WithMany(p => p.OnboarderCourseEnrollment)
                     .HasForeignKey(d => d.CourseId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Onboarder__Cours__5EBF139D");
+                    .HasConstraintName("FK__Onboarder__Cours__531856C7");
 
                 entity.HasOne(d => d.Onboarder)
                     .WithMany(p => p.OnboarderCourseEnrollment)
                     .HasForeignKey(d => d.OnboarderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Onboarder__Onboa__5DCAEF64");
+                    .HasConstraintName("FK__Onboarder__Onboa__540C7B00");
             });
 
             modelBuilder.Entity<OnboarderEquipment>(entity =>
@@ -269,17 +292,19 @@ namespace BMW_ONBOARDING_SYSTEM.Models
                     .WithMany(p => p.OnboarderEquipment)
                     .HasForeignKey(d => d.EquipmentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Onboarder__Equip__628FA481");
+                    .HasConstraintName("FK__Onboarder__Equip__55009F39");
 
                 entity.HasOne(d => d.Onboarder)
                     .WithMany(p => p.OnboarderEquipment)
                     .HasForeignKey(d => d.OnboarderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Onboarder__Onboa__619B8048");
+                    .HasConstraintName("FK__Onboarder__Onboa__55F4C372");
             });
 
             modelBuilder.Entity<Option>(entity =>
             {
+                entity.HasIndex(e => e.QuestionId);
+
                 entity.Property(e => e.OptionDescription).IsUnicode(false);
             });
 
@@ -305,14 +330,26 @@ namespace BMW_ONBOARDING_SYSTEM.Models
 
             modelBuilder.Entity<Question>(entity =>
             {
+                entity.HasIndex(e => e.QuizId);
+
                 entity.Property(e => e.QuestionAnswer).IsUnicode(false);
 
                 entity.Property(e => e.QuestionDescription).IsUnicode(false);
+
+                entity.HasOne(d => d.QuestionBank)
+                    .WithMany(p => p.Question)
+                    .HasForeignKey(d => d.QuestionBankId)
+                    .HasConstraintName("FK_Question_QuestionBank");
             });
 
             modelBuilder.Entity<QuestionBank>(entity =>
             {
                 entity.Property(e => e.QuestionBankDescription).IsUnicode(false);
+
+                entity.HasOne(d => d.Course)
+                    .WithMany(p => p.QuestionBank)
+                    .HasForeignKey(d => d.CourseId)
+                    .HasConstraintName("FK_QuestionBank_Course");
             });
 
             modelBuilder.Entity<QuestionCategory>(entity =>
@@ -325,6 +362,11 @@ namespace BMW_ONBOARDING_SYSTEM.Models
                 entity.Property(e => e.QuizDescription).IsUnicode(false);
 
                 entity.Property(e => e.QuizMarkRequirement).IsUnicode(false);
+
+                entity.HasOne(d => d.QuestionBank)
+                    .WithMany(p => p.Quiz)
+                    .HasForeignKey(d => d.QuestionBankId)
+                    .HasConstraintName("FK_Quiz_QuestionBank");
             });
 
             modelBuilder.Entity<Suburb>(entity =>

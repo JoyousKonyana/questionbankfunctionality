@@ -12,8 +12,7 @@ namespace BMW_ONBOARDING_SYSTEM.Interfaces
 
         void Delete<T>(T entity) where T : class;
         Task<Question> GetQuestionByquestionIDAsync(int questionID);
-        Task<Question[]> GetQuestionByQuizIDAsync(int quizID);
-
+        Task<QuestionBank> GetQuestionByQuestionBankIDAsync(int questionbankID);
         Task<Question[]> GetQuestionAllquestionAsync();
         Task<bool> SaveChangesAsync();
     }

@@ -40,15 +40,15 @@ namespace BMW_ONBOARDING_SYSTEM.Models
         public string EmployeeJobTitle { get; set; }
         [Column("TitleID")]
         public int? TitleId { get; set; }
-        [InverseProperty("Employee")]
-        public virtual Title Title { get; set; }
+
         [ForeignKey(nameof(DepartmentId))]
         [InverseProperty("Employee")]
         public virtual Department Department { get; set; }
+        [ForeignKey(nameof(TitleId))]
+        [InverseProperty("Employee")]
+        public virtual Title Title { get; set; }
         [InverseProperty("Employee")]
         public virtual ICollection<Onboarder> Onboarder { get; set; }
-
-        [InverseProperty("Employee")]
         public virtual ICollection<User> User { get; set; }
     }
 }

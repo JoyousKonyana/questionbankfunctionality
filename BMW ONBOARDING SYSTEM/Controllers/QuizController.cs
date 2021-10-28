@@ -41,7 +41,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         [HttpPost]
         [Route("[action]/{userid}")]
 
-        public async Task<ActionResult<QuizViewModel>> CreateQuiz(int userid ,[FromBody] QuizViewModel model)
+        public async Task<ActionResult<QuizViewModel>> CreateQuiz(int userid, [FromBody] QuizViewModel model)
         {
             try
             {
@@ -181,7 +181,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         }
 
         [HttpGet("{id}")]
-        [Route("[action]")]
+        [Route("[action]/{id}")]
         public async Task<IActionResult> GetQuizByID(int id)
         {
             try
@@ -201,7 +201,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
 
         [HttpPut("{id}")]
         [Route("[action]/{id}/{userid}")]
-        public async Task<ActionResult<QuizViewModel>> UpdateQuiz(int id,int userid ,QuizViewModel updatedQuizModel)
+        public async Task<ActionResult<QuizViewModel>> UpdateQuiz(int id, int userid, QuizViewModel updatedQuizModel)
         {
             try
             {

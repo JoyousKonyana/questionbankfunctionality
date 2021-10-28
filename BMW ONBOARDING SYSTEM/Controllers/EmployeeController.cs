@@ -133,9 +133,9 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         public async Task<ActionResult> RegisterEmployee([FromBody] EmployeeViewModel model)
         {
             try
-            
-            
-            
+
+
+
             {
                 var address = _mapper.Map<Address>(model);
                 _employeeRepository.Add(address);
@@ -315,7 +315,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
             }
             return BadRequest();
         }
-            [HttpPost]
+        [HttpPost]
         [Route("[action]")]
         public async Task<ActionResult> EmployeesFromImport([FromBody] ImportEmployeeViewModel[] model)
         {

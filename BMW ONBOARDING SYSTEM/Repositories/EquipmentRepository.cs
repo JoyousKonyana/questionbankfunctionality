@@ -31,7 +31,7 @@ namespace BMW_ONBOARDING_SYSTEM.Repositories
         {
             IQueryable<OnboarderEquipment> onboarderEquipment = _inf370ContextDB.OnboarderEquipment.
                 Include(x => x.Equipment)
-                //ThenInclude(x => x.EquipmentTradeInStatus)
+              //ThenInclude(x => x.EquipmentTradeInStatus)
               //ThenInclude(x => x.Equipment).ThenInclude(x => x.EquipmentBrand)
               .Where(i => i.OnboarderId == id);
 

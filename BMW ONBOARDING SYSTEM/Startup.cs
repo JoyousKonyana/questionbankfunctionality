@@ -83,6 +83,7 @@ namespace BMW_ONBOARDING_SYSTEM
             services.AddScoped<IOTPRepository, OTPRepository>();
             services.AddScoped<ILessonRepository, LessonRepository>();
             services.AddScoped<IOption, OptionRepository>();
+            services.AddScoped<IQuestionBankRepository, QuestionBankRepository>();
             services.AddCors();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
@@ -90,7 +91,7 @@ namespace BMW_ONBOARDING_SYSTEM
             var appSettingsSection = _configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
-           // configure jwt authentication
+            // configure jwt authentication
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>

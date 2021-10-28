@@ -40,10 +40,13 @@ namespace BMW_ONBOARDING_SYSTEM.Repositories
             return result.FirstOrDefaultAsync();
         }
 
-        public Task<Question[]> GetQuestionByQuizIDAsync(int quizID)
+        public Task<QuestionBank> GetQuestionByQuestionBankIDAsync(int questionbankID)
         {
-            IQueryable<Question> result = _inf370ContextDB.Question.Where(q => q.QuizId == quizID);
-            return result.ToArrayAsync();
+            IQueryable<QuestionBank> result = _inf370ContextDB.QuestionBank.
+                Include(x => x.Question).
+                ThenInclude(x => x.Option).
+                Where(x => x.QuestionBankId == questionbankID);
+            return result.FirstOrDefaultAsync();
         }
 
         public async Task<bool> SaveChangesAsync()

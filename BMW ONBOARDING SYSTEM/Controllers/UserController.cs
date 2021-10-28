@@ -47,7 +47,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         //[Authorize(Roles = Role.Admin)]
         [HttpPost]
         [Route("[action]")]
-        public async Task<ActionResult<User>> registerUser([FromBody]CreateUserViewModel model)
+        public async Task<ActionResult<User>> registerUser([FromBody] CreateUserViewModel model)
         {
 
 
@@ -434,7 +434,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         //[Authorize(Roles = Role.Admin)]
         [HttpPut("{id}")]
         [Route("[action]/{id}/{userid}")]
-        public async Task<ActionResult<CreateUserViewModel>> AssignUserRole(int userid,AssignedUserRoleViewModel updatedModel)
+        public async Task<ActionResult<CreateUserViewModel>> AssignUserRole(int userid, AssignedUserRoleViewModel updatedModel)
         {
             try
             {
@@ -450,7 +450,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
                 {
                     var userrole = await _userRoleRepository.GetUserRoleByid(updatedModel.UserRoleID);
                     AuditLog auditLog = new AuditLog();
-                    auditLog.AuditLogDescription = "Assigned userole to user with  " + ' ' + existinguser.Username + ' '+ "from" + ' '+ existinguser.UserRole.UserRoleName + ' '+ "to" +' ' + userrole.UserRoleName;
+                    auditLog.AuditLogDescription = "Assigned userole to user with  " + ' ' + existinguser.Username + ' ' + "from" + ' ' + existinguser.UserRole.UserRoleName + ' ' + "to" + ' ' + userrole.UserRoleName;
                     auditLog.AuditLogDatestamp = DateTime.Now;
                     auditLog.UserId = userid;
                     return _mapper.Map<CreateUserViewModel>(existinguser);

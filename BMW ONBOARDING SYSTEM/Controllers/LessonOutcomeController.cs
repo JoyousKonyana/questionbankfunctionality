@@ -88,7 +88,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         //[Authorize(Role.Admin)]
         [HttpPost]
         [Route("[action]/{userid}")]
-        public async Task<ActionResult<LessonOutcomeViewModel>> CreateLessonOutcome(int userid,[FromBody] LessonOutcomeViewModel model)
+        public async Task<ActionResult<LessonOutcomeViewModel>> CreateLessonOutcome(int userid, [FromBody] LessonOutcomeViewModel model)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         //[Authorize(Role.Admin)]
         [HttpPut("{id}")]
         [Route("[action]/{id}/{userid}")]
-        public async Task<ActionResult<LessonOutcomeViewModel>> UpdateLessonOutcome(int id,int userid, LessonOutcomeViewModel updatedCourseModel)
+        public async Task<ActionResult<LessonOutcomeViewModel>> UpdateLessonOutcome(int id, int userid, LessonOutcomeViewModel updatedCourseModel)
         {
             try
             {

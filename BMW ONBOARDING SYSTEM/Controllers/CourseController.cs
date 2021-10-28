@@ -48,7 +48,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         //[Authorize(Roles = Role.Admin)]
         [HttpPost]
         [Route("[action]/{userid}")]
-        public async Task<ActionResult<CourseViewModel>> CreateCourse(int userid,[FromBody] CourseViewModel model)
+        public async Task<ActionResult<CourseViewModel>> CreateCourse(int userid, [FromBody] CourseViewModel model)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         //[Authorize(Roles = Role.Admin)]
         [HttpPost]
         [Route("[action]/{userid}")]
-        public async Task<ActionResult<OnboarderCourseEnrollmentViewModel>> AssignCourse(int userid,[FromBody] OnboarderCourseEnrollmentViewModel model)
+        public async Task<ActionResult<OnboarderCourseEnrollmentViewModel>> AssignCourse(int userid, [FromBody] OnboarderCourseEnrollmentViewModel model)
         {
             try
             {

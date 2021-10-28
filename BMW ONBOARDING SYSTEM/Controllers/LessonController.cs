@@ -29,7 +29,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
         //[Authorize(Roles = Role.Admin)]
         [HttpPost]
         [Route("[action]/{userid}")]
-        public async Task<ActionResult<CourseViewModel>> CreateLesson(int userid,[FromBody] LessonViewModel model)
+        public async Task<ActionResult<CourseViewModel>> CreateLesson(int userid, [FromBody] LessonViewModel model)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
 
                 if (await _lessonRepository.SaveChangesAsync())
                 {
-                    
+
                     AuditLog auditLog = new AuditLog();
                     auditLog.AuditLogDescription = "Created lesson with name " + ' ' + lesson.LessonName; ;
                     auditLog.AuditLogDatestamp = DateTime.Now;
@@ -105,7 +105,7 @@ namespace BMW_ONBOARDING_SYSTEM.Controllers
 
         [HttpPut("{id}")]
         [Route("[action]/{id}/{userid}")]
-        public async Task<ActionResult<CourseViewModel>> UpdateLesson(int id,int userid ,LessonViewModel updatedLessonModel)
+        public async Task<ActionResult<CourseViewModel>> UpdateLesson(int id, int userid, LessonViewModel updatedLessonModel)
         {
             try
             {

@@ -16,7 +16,7 @@ namespace BMW_ONBOARDING_SYSTEM.ViewModel
         public string QuizDescription { get; set; }
      
         public string QuizMarkRequirement { get; set; }
-       
+        public int? QuestionBankId { get; set; }
         public DateTime? QuizDueDate { get; set; }
       
         public DateTime? QuizCompletionDate { get; set; }

@@ -139,6 +139,9 @@ namespace BMW_ONBOARDING_SYSTEM.Profiles
 
             this.CreateMap<User, AssignedUserRoleViewModel>().
  ReverseMap();
+
+            this.CreateMap<QuestionBank, QuestionBankViewModel>().
+ReverseMap();
         }
     }
 }

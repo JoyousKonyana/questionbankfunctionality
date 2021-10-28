@@ -30,14 +30,28 @@ namespace BMW_ONBOARDING_SYSTEM.Repositories
         {
 
             // we also need to include possible answers
-            IQueryable<Quiz> result = _inf370ContextDB.Quiz.Where(q => q.QuizId == quizId).Include(x => x.Question).ThenInclude(x => x.Option);
+            var numberOfQuestions = _inf370ContextDB.Quiz.Where(x => x.QuizId == quizId).FirstOrDefault();
+
+            IQueryable<Quiz> result = _inf370ContextDB.Quiz.Where(q => q.QuizId == quizId).Include(x => x.QuestionBank).ThenInclude(x => x.Question).
+                ThenInclude(x => x.Option).Take(1);
             return result.FirstOrDefaultAsync();
 
         }
 
+        //public Task<Quiz> GetQuizquestionbankidByIDAsync(int questionbankid)
+        //{
+
+        //    // we also need to include possible answers
+        //    Quiz numberOfQuestions = _inf370ContextDB.Quiz.Where(x => x.QuizId == quizId).FirstOrDefault();
+
+        //    IQueryable<Quiz> result = _inf370ContextDB.Question.Include(x => x.QuestionBank).Where(x => x.QuestionBankId == questionbankid).Include(x =>x.Q).Take(Convert.ToInt32(numberOfQuestions.NumberOfQuestions));
+
+        //}
+
         public Task<Quiz> GetQuizByLessonOutcomeIDAsync(int lessonOutcomeId)
         {
-            IQueryable<Quiz> result = _inf370ContextDB.Quiz.Where(q => q.LessonOutcomeId == lessonOutcomeId).Include(x => x.Question).ThenInclude(x => x.Option);
+            IQueryable<Quiz> result = _inf370ContextDB.Quiz.Where(q => q.LessonOutcomeId == lessonOutcomeId).Include(x => x.QuestionBank).ThenInclude(x => x.Question)
+                .ThenInclude(x => x.Option);
             return result.FirstOrDefaultAsync();
         }
         public async Task<bool> SaveChangesAsync()
