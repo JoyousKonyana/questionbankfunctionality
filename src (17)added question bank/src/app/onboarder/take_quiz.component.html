@@ -1,0 +1,32 @@
+<h1>
+  Quiz
+</h1>
+
+<!-- This will containt a list of the available Quiz in their Lesson Outcome and their Instruction -->
+<div>
+
+<div class="container">
+  <div *ngFor="let quiz of quiz; let i = index">
+    
+    <div>
+      <small>This is Quiz: {{quiz.quizId}}</small>
+      <h3>
+        Quiz Description:
+        <br/>
+        {{quiz.quizDescription}}
+      </h3>
+      <p>
+        To pass this Quiz a minimum mark must be achieved of: {{quiz.quizMarkRequirement}}
+      </p>
+      <p>This Quiz is Due: {{quiz.quizDueDate}}</p>
+      <p>There is a total number of Question of: {{quiz.numberOfQuestions}}</p>
+      <a class="btn btn-primary" >Take: Lesson</a>
+      <button class="btn btn-info" [routerLink]="['/quiz', quiz.quizId]">Start Quiz</button>
+    </div>
+
+    <hr>
+
+  </div>
+</div>
+
+</div>

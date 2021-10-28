@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Quiz</h1>      
+        <p>Instructions on how to complete the quiz. It is best to do each question one by one, then save your answer. Once you answer has been saved the system validates if the answer was correct and awards you marks accordingly. You will need a minimum mark 50% to pass this test, then you will be on your way to completing this course. BMW wishes you Goodluck.</p>
+      </div>
+</div>
+  
+  <div class="container-fluid">
+
+    <div *ngFor="let question of question; let x = index">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Question ID: {{question.questionId}}</div>
+        <div class="panel-body">
+          <h3>
+            Question
+            <br/>
+            {{question.questionDescription}}
+            <br/>
+            <div class="form-group name">
+              <input type="text"
+                     class="form-control input"
+                     id="answer"
+                     name="answer"
+                     [(ngModel)]="model"
+                     placeholder="Answer...">
+            </div>
+            <br/>
+            <button (click)="saveAnswer(x)">Save Answer</button>
+          </h3>
+        </div>
+      </div>
+
+      <hr>
+
+    </div>
+
+  </div>
+
+  <button (click)="submitQuiz()">Submit</button>
+
+  <div *ngIf="question.length == 0" class="container">
+    <h2>You have completed your Quiz. Here are you marks</h2>
+    <h1>Marks: {{score}}</h1>
+    <h1>Quiz Mark Allocation: {{myValue}}</h1>
+    <h1>Percentage: {{percentage}} %</h1>
+  </div>
