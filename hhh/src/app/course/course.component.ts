@@ -27,8 +27,6 @@ export class CourseComponent implements OnInit {
       private alertService: AlertService,
 
       private router: Router,
-      
-      private modalService: ModalService
   ) {
 
   }
@@ -63,25 +61,6 @@ export class CourseComponent implements OnInit {
     CourseDueDate: '',
     CourseName: '',
   };
-
-  openModal(id: string, courseId: number) {
-    this.modalService.open(id);
-
-    this.courseService.getCourseById(courseId)
-    .pipe(first())
-    .subscribe(
-      item => {
-        this.item = item;
-      },
-      error => {
-        this.alertService.error('Error, Data was unsuccesfully retrieved');
-      } 
-    );
-}
-
-closeModal(id: string) {
-    this.modalService.close(id);
-}
 
   addCourse() { 
     if(Object.keys(this.model).length < 3)

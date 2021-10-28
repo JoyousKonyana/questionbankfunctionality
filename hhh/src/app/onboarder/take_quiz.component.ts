@@ -67,17 +67,7 @@ constructor(
 
     this.myValue = this.question[index].quizMarkRequirement;
 
-    this.quizService.getQuestionByQuizID(quizId)
-      .pipe(first())
-      .subscribe(
-        question => {
-          this.question = question;
-          console.log(this.question)
-        },
-        error => {
-          this.alertService.error('Error, Data (Question) was unsuccesfully retrieved');
-        } 
-      );
+    
   }
 
   closeModal(id: string) {

@@ -45,6 +45,7 @@
     <div class="form-group name">
       <label>Enter Quiz Due Date:</label>
       <input type="date"
+              min="{{this.date}}"
              class="form-control input"
              id="QuizDueDate"
              name="QuizDueDate"
@@ -94,6 +95,7 @@
     <div class="form-group name">
       <label>Enter Quiz Due Date:</label>
       <input type="date"
+              min="{{this.date}}"
              class="form-control input"
              id="QuizDueDate"
              name="QuizDueDate"
@@ -137,7 +139,7 @@
   <tbody>
     <tr *ngFor="let item of quiz; let i = index">
       <td>{{item.quizId}}</td>
-      <td>{{item.lessonOutcome.lessonOutcomeId }}</td>
+      <td>{{item.lessonOutcome.lessonOutcomeId}}</td>
       <td>{{item.quizDescription}}</td>
       <td>{{item.quizMarkRequirement}}</td>
       <td>{{item.quizDueDate}}</td>

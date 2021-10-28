@@ -32,8 +32,6 @@ export class LessonComponent implements OnInit {
 
       private _Activatedroute:ActivatedRoute,
       private router: Router,
-
-      private modalService: ModalService
   ) {
     //this.id = this.router.getCurrentNavigation().extras.state.example
   }
@@ -70,25 +68,6 @@ export class LessonComponent implements OnInit {
     );
   }
 
-  openModal(id: string, lessonId: number) {
-    this.modalService.open(id);
-
-    this.lessonService.getLessonById(lessonId)
-    .pipe(first())
-    .subscribe(
-      item => {
-        this.item = item;
-      },
-      error => {
-        this.alertService.error('Error, Data was unsuccesfully retrieved');
-      } 
-    );
-}
-
-closeModal(id: string) {
-    this.modalService.close(id);
-}
-
     newLessonClicked = false;
 
   model: any = {};
@@ -101,16 +80,6 @@ closeModal(id: string) {
      LessonDescription: '',
      LessonName: ''
   };
-
-  //Remove this bad boy
-  testData() {
-    this.lesson.push(
-      { lessonId: 1, courseId: 1, lessonCompletionStatusId: 1, lessonDescription: '213', lessonName: '3212'},
-      { lessonId: 1, courseId: 1, lessonCompletionStatusId: 1, lessonDescription: 'fg', lessonName: '3212'},
-      { lessonId: 1, courseId: 1, lessonCompletionStatusId: 1, lessonDescription: '2zxklcmkc13', lessonName: '3212'},
-      { lessonId: 1, courseId: 1, lessonCompletionStatusId: 1, lessonDescription: '2m13', lessonName: '3212'},
-    );
-  }
 
   addLesson() { 
     if(Object.keys(this.model).length < 2)

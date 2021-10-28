@@ -39,7 +39,7 @@ import {
      Take_ContentComponent,
      ProgressComponent,
      FAQComponent,
-    // Ask_QuestionComponent,
+     QuizComponent,
     BookingComponent,
     SS_OnboarderComponent
   } from './onboarder';  
@@ -267,7 +267,11 @@ const routes: Routes = [
    component: ProgressComponent, 
    canActivate: [AuthGuard] 
   },
-// { path: 'ask_question', component: Ask_QuestionComponent, canActivate: [AuthGuard] },
+ {  
+  path: 'quiz/:id', 
+  component: QuizComponent, 
+  //canActivate: [AuthGuard] 
+},
 
 // //Course path pages
  { 

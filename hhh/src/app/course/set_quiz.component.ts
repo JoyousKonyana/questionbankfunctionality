@@ -22,6 +22,8 @@ export class Set_QuizComponent implements OnInit {
 
     quiz: any;
 
+    date!: string;
+
     constructor(
         private quizSerivce: QuizService,
         private alertService: AlertService,
@@ -38,6 +40,8 @@ export class Set_QuizComponent implements OnInit {
       });
 
       this.loadAll();
+
+      this.date = new Date().toISOString().slice(0, 10);
     }
 
     loadAll() {
@@ -46,6 +50,7 @@ export class Set_QuizComponent implements OnInit {
         .subscribe(
           quiz => {
             this.quiz = quiz;
+            console.log(this.quiz);
           },
           error => {
             this.alertService.error('Error, Data was unsuccesfully retrieved');

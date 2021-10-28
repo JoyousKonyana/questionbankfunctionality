@@ -56,7 +56,7 @@ import {
    Take_ContentComponent,
    ProgressComponent,
    FAQComponent,
-  // Ask_QuestionComponent,
+   QuizComponent,
   BookingComponent,
   SS_OnboarderComponent
 } from './onboarder';
@@ -168,6 +168,7 @@ import { ChartsModule } from 'ng2-charts';
     Take_Learning_OutcomeComponent,
     Take_QuizComponent,
     ProgressComponent,
+    QuizComponent,
 
     //Equipment
     EquipmentComponent,

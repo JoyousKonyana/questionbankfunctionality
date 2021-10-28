@@ -30,7 +30,7 @@ export class QuizService {
   //Question
   urlQuestion = 'https://localhost:44319/api/Question';
   createQuestion(question:any) {
-    return this.http.post(`${this.urlQuestion}/Createquestion/` +this.userId, question, {headers:this.httHeaders});
+    return this.http.post(`${this.urlQuestion}/Createquestion/` + 1, question, {headers:this.httHeaders});
   }
   getQuestionByQuizID(id: number): Observable<any> {  
     return this.http.get<any>(`${this.urlQuestion + '/GetQuestionsForQuiz/' + id}`);  
